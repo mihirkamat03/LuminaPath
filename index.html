@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Lumina Path</title>
+    <title>Lumina Path</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -19,64 +19,93 @@
         </nav>
     </header>
 
-    <section class="about-section-1">
-        <div class="content-wrapper">
-            <h1 class="main-title">About Us</h1>
-            
-            <div class="info-block">
-                <h2>Why us?</h2>
-                <p>Current navigation technology is built for speed, not security, often leading vulnerable
-                    pedestrians into poorly lit or deserted areas just to save a few seconds. There is a critical safety
-                    gap in urban mobility where women, children, and late-shift workers feel forced to choose
-                    between reaching their destination quickly or reaching it safely.</p>
-            </div>
+    <main class="hero-section">
+        <div class="hero-content">
+            <h1 class="logo-text">Lumina<br>Path</h1>
+            <p class="tagline">Shortest path isn't always the right one.</p>
         </div>
-    </section>
+    </main>
 
-    <section class="about-section-2">
-        <div class="content-wrapper">
-            <div class="info-block">
-                <h2>What do we do?</h2>
-                <p>LuminaPath bridges this gap by integrating real-time environmental data—such as streetlamp
-                    density and active foot traffic—directly into the routing engine. Instead of just showing the
-                    "fastest" route, our AI analyzes urban infrastructure to suggest the brightest and most
-                    populated paths, ensuring users are never left in the dark.</p>
-            </div>
-
-            <div class="info-block">
-                <h2>Our Impact:</h2>
-                <p>By prioritizing human security over algorithmic efficiency, we are reclaiming the night for
-                    everyone. This product will fundamentally shift how cities are navigated, turning "fear of the
-                    dark" into "confidence in the path" and setting a new global standard where safety is a default
-                    setting in every journey.</p>
-            </div>
-
-            <div class="register-btn-small">
-                Register <span>&nearr;</span>
-            </div>
+    <main class="hero-section2">
+        <div class="hero-content2">
+            <h1 class="headline">The Way, Made<br>Brighter</h1>
+            <p class="desc">Ditch the guesswork of sketchy shortcuts and embrace the power of AI. <br>Map, protect, or
+                bring the peace of mind as we bridge the gap between shortest and safest, one streetlight at a time.</p>
         </div>
-    </section>
+    </main>
 
-    <section class="founders-section">
-        <div class="content-wrapper">
-            <h1 class="founders-title">Founders</h1>
-            
-            <div class="founders-list">
-                <div class="founder-item">
-                    <h3>Aarush Nalwade:</h3>
-                    <p>B.Tech CSE, 1st Year student from TSEC</p>
-                </div>
-                <div class="founder-item">
-                    <h3>Advait Jawalikar:</h3>
-                    <p>B.Tech CSE & Cyber Security, 1st Year student from NMIMS MPSTME</p>
-                </div>
-                <div class="founder-item">
-                    <h3>Mihir Kamat:</h3>
-                    <p>B.Tech CSE, 1st Year student from TSEC</p>
-                </div>
-            </div>
+    <main class="hero-section3">
+        <div class="hero-content3">
+            <p class="desc3">We believe the shortest distance between two points shouldn’t be measured in miles, but in
+                peace of mind. <br>By leveraging AI to analyze real-time lighting data and foot traffic patterns, our
+                platform goes beyond the standard
+                GPS to prioritize your security over speed.<br> We aren't just mapping streets; we are rerouting the future
+                of urban safety one bright path at a time.</p>
         </div>
-    </section>
+        <div class="register_btn">Register  <p style="display: flex; margin-left: 10px; font-size: 2rem; margin-top: -12px;">→</p></div>
+    </main>
+
+    <main class="contact">
+        <div class="contact-content">
+            <h1 class="headline_contact">Contact Us</h1>
+            <h1 style="position: absolute; top: 30%; left: 2%; font-size: 1.5rem; left: 2%;">Phone Number:</h1>
+            <p style="position: absolute; top: 36%; left: 2%; font-size: 1.2rem; font-weight: 400;" class="contact_nos">
+                +91 93210 26986</p>
+            <p style="position: absolute; top: 40%; left: 2%; font-size: 1.2rem; font-weight: 400;" class="contact_nos">
+                +91 70212 96177</p>
+            <p style="position: absolute; top: 44%; left: 2%; font-size: 1.2rem; font-weight: 400;" class="contact_nos">
+                +91 98675 26734</p>
+
+
+            <h1 style="position: absolute; top: 52%; left: 2%; font-size: 1.5rem; left: 2%;">Socials:</h1>
+            <a href="https://instagram.com/mihirkamat_07" target="_blank" class="social-icon insta">
+                <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
+            </a>
+
+            <h1 style="position: absolute; bottom: 2%; left: 0; font-size: 8rem; width: 100%; align-items: center;">
+                Rerouting For Safety</h1>
+
+
+            <!-- <div class="form-card">
+            <form>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="number" placeholder="+91 ...">
+                </div>
+                <div class="form-group">
+                    <label>How can we help?</label>
+                    <textarea rows="4" placeholder="Describe your issue in brief"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Send Message</button>
+            </form>
+        </div> -->
+        </div>
+    </main>
+
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    // Add the class to start animations
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+
+        const sections = document.querySelectorAll('.hero-section2, .hero-section3');
+
+        sections.forEach((section) => {
+            observer.observe(section);
+        });
+    </script>
 
 </body>
+
 </html>
