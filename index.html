@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina Path</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Maps</a>
+        </nav>
+    </header>
+
+    <main class="hero-section">
+        <div class="hero-content">
+            <h1 class="logo-text">Lumina<br>Path</h1>
+            <p class="tagline">Shortest path isn't always the right one.</p>
+        </div>
+    </main>
+
+    <main class="hero-section2">
+        <div class="hero-content2">
+            <h1 class="headline">The Way, Made<br>Brighter</h1>
+            <p class="desc">Ditch the guesswork of sketchy shortcuts and embrace the power of AI. <br>Map, protect, or
+                bring the peace of mind as we bridge the gap between shortest and safest, one streetlight at a time.</p>
+        </div>
+    </main>
+
+    <main class="contact">
+        <div class="contact-content">
+            <h1 class="headline_contact">Contact Us</h1>
+            <h1 style="position: absolute; top: 30%; left: 2%; font-size: 1.5rem; left: 2%;">Phone Number:</h1>
+            <p style="position: absolute; top: 36%; left: 2%; font-size: 1.2rem; font-weight: 400;" class="contact_nos">+91 </p>
+            <p style="position: absolute; top: 40%; left: 2%; font-size: 1.2rem; font-weight: 400;" class="contact_nos">+91 </p>
+            <p style="position: absolute; top: 44%; left: 2%; font-size: 1.2rem; font-weight: 400;" class="contact_nos">+91 </p>
+        </div>
+    </main>
+
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    // Add the class to start animations
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.2 // Starts when 20% of the section is visible
+        });
+
+        // Tell the observer to watch the second section
+        const section2 = document.querySelector('.hero-section2');
+        observer.observe(section2);
+    </script>
+
+</body>
+
+</html>
