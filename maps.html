@@ -1,175 +1,22 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <img style="height: 100vh; width: 100vw;" src="assets/image/image.png" alt="">
-    
-</body>
-</html> -->
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LuminaPath - Safe Routing</title>
+    <title>LuminaPath - AI Analysis</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style_map.css">
     <link rel="stylesheet" href="css/style.css">
 
-    <style>
-        body {
-            overflow: hidden;
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
         }
-
-        #map {
-            height: 100vh;
-            width: 100%;
-        }
-
-        .controls-card {
-            position: absolute;
-            top: 120px;
-            left: 5%;
-            width: 350px;
-            background: rgba(11, 14, 20, 0.85);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 229, 255, 0.3);
-            border-radius: 20px;
-            padding: 25px;
-            color: white;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            z-index: 10;
-            animation: slideIn 0.8s ease-out;
-        }
-
-        .controls-card h2 {
-            font-family: 'Montserrat', sans-serif;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-
-        .input-group {
-            margin-bottom: 15px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #ccc;
-            font-size: 0.9rem;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #444;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-
-        .search-btn {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(90deg, #00E5FF, #2979FF);
-            /* Google Colors */
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 10px;
-        }
-
-        .search-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
-        }
-
-        /* The "Gemini AI" Analysis Box */
-        .ai-result {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: none;
-            /* Hidden by default */
-        }
-
-        .ai-badge {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: #00E5FF;
-            margin-bottom: 10px;
-        }
-
-        .ai-badge img {
-            width: 15px;
-            margin-right: 5px;
-        }
-
-        .route-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-val {
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .stat-label {
-            font-size: 0.7rem;
-            color: #aaa;
-        }
-
-        .safe-text {
-            color: #00E5FF;
-        }
-
-        .risk-text {
-            color: #FF5252;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(-50px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-    </style>
+      }
+    </script>
+    <script type="module" src="js/script.js"></script>
 </head>
-
 <body>
 
     <header class="navbar">
@@ -180,162 +27,49 @@
         </nav>
     </header>
 
-    <div id="map"></div>
+    <div class="map-background"></div>
 
-    <div class="controls-card">
-        <h2>Plan Your Walk</h2>
-
-        <div class="input-group">
-            <label>Start Location</label>
-            <input type="text" id="start" value="TSEC, Bandra West" readonly>
-        </div>
-
-        <div class="input-group">
-            <label>Destination</label>
-            <input type="text" id="end" value="Bandra Station West" readonly>
-        </div>
-
-        <button class="search-btn" onclick="calcRoute()">Find Safest Route</button>
-
-        <div class="ai-result" id="aiPanel">
-            <div class="ai-badge">
-                <span>✨ Powered by Gemini AI</span>
+    <div class="controls-container">
+        <div class="glass-panel">
+            <h2 class="panel-title">Plan Your Journey</h2>
+            
+            <div class="input-group">
+                <label>Origin</label>
+                <input type="text" id="origin" value="TSEC, Bandra West">
             </div>
 
-            <div class="route-stats">
-                <div class="stat">
-                    <div class="stat-val safe-text">98%</div>
-                    <div class="stat-label">Safety Score</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-val">12</div>
-                    <div class="stat-label">Streetlights</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-val">High</div>
-                    <div class="stat-label">Foot Traffic</div>
-                </div>
+            <div class="input-group">
+                <label>Destination</label>
+                <input type="text" id="dest" value="Bandra Railway Station">
             </div>
 
-            <p style="font-size: 0.9rem; line-height: 1.4; color: #ddd;">
-                <strong class="safe-text">Recommended:</strong> This route is slightly longer (SV Road) but passes a
-                Police Station and 24/7 Pharmacy.
-                <br><br>
-                <span class="risk-text">Warning:</span> The shortest path avoids the main road and has low lighting
-                reports.
-            </p>
+            <button class="analyze-btn" id="analyzeBtn">
+                <span id="btnText">Analyze Safety with AI</span>
+            </button>
+
+            <div class="ai-response" id="geminiResult">
+                <div class="gemini-badge">
+                    <span>✨ Analysis by Gemini Pro</span>
+                </div>
+
+                <div class="score-grid">
+                    <div class="score-item">
+                        <span class="score-value safe" id="safetyScore">--</span>
+                        <span class="score-label">Safety Score</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="score-value" id="lightScore">--</span>
+                        <span class="score-label">Visibility</span>
+                    </div>
+                </div>
+
+                <div class="analysis-text">
+                    <p class="recommendation" id="aiTitle">Loading analysis...</p>
+                    <p class="details" id="aiDesc">Gemini is processing satellite metadata...</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmkSpSy8OsQ281sXv4TPcn_qCH8hdAKEw&callback=initMap&libraries=places"
-        async defer></script>
-
-    <script>
-        let map;
-        let directionsService;
-        let directionsRendererSafe;
-        let directionsRendererFast;
-
-        function initMap() {
-            map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: 19.0645, lng: 72.8358 }, 
-                zoom: 15,
-                disableDefaultUI: true, 
-                styles: [ 
-                    { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
-                    { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
-                    { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
-                    {
-                        featureType: "administrative.locality",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#d59563" }],
-                    },
-                    {
-                        featureType: "road",
-                        elementType: "geometry",
-                        stylers: [{ color: "#38414e" }],
-                    },
-                    {
-                        featureType: "road",
-                        elementType: "geometry.stroke",
-                        stylers: [{ color: "#212a37" }],
-                    },
-                    {
-                        featureType: "road",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#9ca5b3" }],
-                    },
-                    {
-                        featureType: "water",
-                        elementType: "geometry",
-                        stylers: [{ color: "#17263c" }],
-                    },
-                ],
-            });
-
-            directionsService = new google.maps.DirectionsService();
-
-            directionsRendererSafe = new google.maps.DirectionsRenderer({
-                map: map,
-                suppressMarkers: false,
-                polylineOptions: {
-                    strokeColor: "#00E5FF", 
-                    strokeWeight: 6,
-                    strokeOpacity: 0.8
-                }
-            });
-
-            directionsRendererFast = new google.maps.DirectionsRenderer({
-                map: map,
-                suppressMarkers: true,
-                polylineOptions: {
-                    strokeColor: "#FF5252", 
-                    strokeWeight: 4,
-                    strokeOpacity: 0.5
-                }
-            });
-        }
-
-        function calcRoute() {
-            var start = "Thadomal Shahani Engineering College, Mumbai";
-            var end = "Bandra Railway Station West, Mumbai";
-
-            var requestSafe = {
-                origin: start,
-                destination: end,
-                waypoints: [{ location: "National College, Bandra West" }],
-                travelMode: 'WALKING'
-            };
-
-            // 2. Calculate the FAST/RISKY Route (Direct)
-            var requestFast = {
-                origin: start,
-                destination: end,
-                travelMode: 'WALKING'
-            };
-
-            // Draw Safe Route
-            directionsService.route(requestSafe, function (result, status) {
-                if (status == 'OK') {
-                    directionsRendererSafe.setDirections(result);
-                    // Show the AI Panel after a small delay to simulate "Thinking"
-                    setTimeout(() => {
-                        document.getElementById('aiPanel').style.display = 'block';
-                        document.querySelector('.controls-card').style.height = 'auto'; // Expand box
-                    }, 1000);
-                }
-            });
-
-            // Draw Fast Route
-            directionsService.route(requestFast, function (result, status) {
-                if (status == 'OK') {
-                    directionsRendererFast.setDirections(result);
-                }
-            });
-        }
-    </script>
-
 </body>
-
 </html>

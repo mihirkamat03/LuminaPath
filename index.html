@@ -91,7 +91,6 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    // Add the class to start animations
                     entry.target.classList.add('active');
                 }
             });

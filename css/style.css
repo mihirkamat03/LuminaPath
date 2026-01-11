@@ -437,22 +437,19 @@ textarea:focus {
 
 
 /* =========================================
-   ABOUT PAGE - SPLIT SECTIONS
+   ABOUT PAGE 
    ========================================= */
 
-/* Common styles for the text container */
 .content-wrapper {
     max-width: 1200px;
     padding: 0 5%;
     z-index: 2;
-    /* Keeps text above background overlay */
     position: relative;
 }
 
 /* --- SECTION 1: Why Us --- */
 .about-section-1 {
     min-height: 100vh;
-    /* Adjust height as needed */
     width: 100%;
     position: relative;
     display: flex;
@@ -460,7 +457,6 @@ textarea:focus {
     justify-content: center;
     color: white;
     padding-top: 80px;
-    /* Space for navbar */
 }
 
 .about-section-1::before {
@@ -533,7 +529,6 @@ textarea:focus {
     z-index: 0;
 }
 
-/* Typography & Elements */
 .info-block {
     margin-bottom: 40px;
     text-align: left;
@@ -576,7 +571,6 @@ textarea:focus {
     color: #ccc;
 }
 
-/* Register Button */
 .register-btn-small {
     display: inline-flex;
     align-items: center;
@@ -599,11 +593,6 @@ textarea:focus {
     margin-left: 10px;
     font-size: 1.2rem;
 }
-
-
-/* =========================================
-   FIXED ANIMATIONS FOR ABOUT PAGE
-   ========================================= */
 
 @keyframes slideUpFade {
     0% {
