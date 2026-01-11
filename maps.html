@@ -22,19 +22,19 @@
 
 
 
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LuminaPath - Safe Routing</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    
+
     <style>
-        /* Specific Styles for the Map Page */
         body {
-            overflow: hidden; /* No scrolling on map page */
+            overflow: hidden;
         }
 
         #map {
@@ -42,15 +42,14 @@
             width: 100%;
         }
 
-        /* The Glassmorphism Control Panel */
         .controls-card {
             position: absolute;
-            top: 120px; /* Below navbar */
+            top: 120px;
             left: 5%;
             width: 350px;
-            background: rgba(11, 14, 20, 0.85); /* Dark transparent */
+            background: rgba(11, 14, 20, 0.85);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 229, 255, 0.3); /* Cyan border */
+            border: 1px solid rgba(0, 229, 255, 0.3);
             border-radius: 20px;
             padding: 25px;
             color: white;
@@ -88,7 +87,8 @@
         .search-btn {
             width: 100%;
             padding: 12px;
-            background: linear-gradient(90deg, #00E5FF, #2979FF); /* Google Colors */
+            background: linear-gradient(90deg, #00E5FF, #2979FF);
+            /* Google Colors */
             border: none;
             border-radius: 8px;
             color: white;
@@ -108,7 +108,8 @@
             margin-top: 20px;
             padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: none; /* Hidden by default */
+            display: none;
+            /* Hidden by default */
         }
 
         .ai-badge {
@@ -141,21 +142,34 @@
             font-size: 1.2rem;
             font-weight: bold;
         }
-        
+
         .stat-label {
             font-size: 0.7rem;
             color: #aaa;
         }
 
-        .safe-text { color: #00E5FF; }
-        .risk-text { color: #FF5252; }
+        .safe-text {
+            color: #00E5FF;
+        }
+
+        .risk-text {
+            color: #FF5252;
+        }
 
         @keyframes slideIn {
-            from { transform: translateX(-50px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+            from {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <header class="navbar">
@@ -170,7 +184,7 @@
 
     <div class="controls-card">
         <h2>Plan Your Walk</h2>
-        
+
         <div class="input-group">
             <label>Start Location</label>
             <input type="text" id="start" value="TSEC, Bandra West" readonly>
@@ -187,7 +201,7 @@
             <div class="ai-badge">
                 <span>✨ Powered by Gemini AI</span>
             </div>
-            
+
             <div class="route-stats">
                 <div class="stat">
                     <div class="stat-val safe-text">98%</div>
@@ -204,14 +218,18 @@
             </div>
 
             <p style="font-size: 0.9rem; line-height: 1.4; color: #ddd;">
-                <strong class="safe-text">Recommended:</strong> This route is slightly longer (SV Road) but passes a Police Station and 24/7 Pharmacy. 
+                <strong class="safe-text">Recommended:</strong> This route is slightly longer (SV Road) but passes a
+                Police Station and 24/7 Pharmacy.
                 <br><br>
-                <span class="risk-text">Warning:</span> The shortest path avoids the main road and has low lighting reports.
+                <span class="risk-text">Warning:</span> The shortest path avoids the main road and has low lighting
+                reports.
             </p>
         </div>
     </div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmkSpSy8OsQ281sXv4TPcn_qCH8hdAKEw&callback=initMap&libraries=places" async defer></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmkSpSy8OsQ281sXv4TPcn_qCH8hdAKEw&callback=initMap&libraries=places"
+        async defer></script>
 
     <script>
         let map;
@@ -220,12 +238,11 @@
         let directionsRendererFast;
 
         function initMap() {
-            // 1. Initialize the Map centered on Bandra (TSEC)
             map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: 19.0645, lng: 72.8358 }, // TSEC Coordinates
+                center: { lat: 19.0645, lng: 72.8358 }, 
                 zoom: 15,
-                disableDefaultUI: true, // Makes it look cleaner
-                styles: [ // Dark Mode Map Style
+                disableDefaultUI: true, 
+                styles: [ 
                     { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
                     { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
                     { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
@@ -259,23 +276,21 @@
 
             directionsService = new google.maps.DirectionsService();
 
-            // Renderer for the Safe Route (Green)
             directionsRendererSafe = new google.maps.DirectionsRenderer({
                 map: map,
                 suppressMarkers: false,
                 polylineOptions: {
-                    strokeColor: "#00E5FF", // Neon Cyan/Green
+                    strokeColor: "#00E5FF", 
                     strokeWeight: 6,
                     strokeOpacity: 0.8
                 }
             });
 
-            // Renderer for the Risky Route (Red/Grey)
             directionsRendererFast = new google.maps.DirectionsRenderer({
                 map: map,
-                suppressMarkers: true, // Don't show A/B markers for this one
+                suppressMarkers: true,
                 polylineOptions: {
-                    strokeColor: "#FF5252", // Red
+                    strokeColor: "#FF5252", 
                     strokeWeight: 4,
                     strokeOpacity: 0.5
                 }
@@ -286,12 +301,10 @@
             var start = "Thadomal Shahani Engineering College, Mumbai";
             var end = "Bandra Railway Station West, Mumbai";
 
-            // 1. Calculate the SAFE Route (Forced via a main road/waypoint)
-            // We force it to go via 'Linking Road' or a specific safe spot to make it look different
             var requestSafe = {
                 origin: start,
                 destination: end,
-                waypoints: [{ location: "National College, Bandra West" }], // Forces route via SV Road (Safer)
+                waypoints: [{ location: "National College, Bandra West" }],
                 travelMode: 'WALKING'
             };
 
@@ -303,7 +316,7 @@
             };
 
             // Draw Safe Route
-            directionsService.route(requestSafe, function(result, status) {
+            directionsService.route(requestSafe, function (result, status) {
                 if (status == 'OK') {
                     directionsRendererSafe.setDirections(result);
                     // Show the AI Panel after a small delay to simulate "Thinking"
@@ -315,7 +328,7 @@
             });
 
             // Draw Fast Route
-            directionsService.route(requestFast, function(result, status) {
+            directionsService.route(requestFast, function (result, status) {
                 if (status == 'OK') {
                     directionsRendererFast.setDirections(result);
                 }
@@ -324,4 +337,5 @@
     </script>
 
 </body>
-</html> 
+
+</html>
