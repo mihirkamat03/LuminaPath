@@ -1,75 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LuminaPath - AI Analysis</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style_map.css">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LuminaPath - Maps</title>
 
-    <script type="importmap">
-      {
-        "imports": {
-          "@google/generative-ai": "https://esm.run/@google/generative-ai"
-        }
-      }
-    </script>
-    <script type="module" src="js/script.js"></script>
+  <link rel="stylesheet" href="css/style_map.css" />
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- IMPORTANT: module script -->
+  <script type="module" src="js/script.js"></script>
 </head>
+
 <body>
 
-    <header class="navbar">
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About Us</a>
-            <a href="maps.html">Maps</a>
-        </nav>
-    </header>
+  <header class="navbar">
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Maps</a>
+    </nav>
+  </header>
 
-    <div class="map-background"></div>
+  <div class="controls">
+    <input type="text" id="start" placeholder="Starting Location" value="Gorai 1, Borivali" />
+    <input type="text" id="end" placeholder="Destination" value="Borivali West Station" />
+    <button onclick="calculateRoute()">Find Safe Route</button>
+  </div>
 
-    <div class="controls-container">
-        <div class="glass-panel">
-            <h2 class="panel-title">Plan Your Journey</h2>
-            
-            <div class="input-group">
-                <label>Origin</label>
-                <input type="text" id="origin" value="TSEC, Bandra West">
-            </div>
+  <div id="legend">
+    <span class="safe">🟢 Safe</span>
+    <span class="moderate">🟠 Moderate</span>
+    <span class="risky">🔴 Risky</span>
+  </div>
 
-            <div class="input-group">
-                <label>Destination</label>
-                <input type="text" id="dest" value="Bandra Railway Station">
-            </div>
-
-            <button class="analyze-btn" id="analyzeBtn">
-                <span id="btnText">Analyze Safety with AI</span>
-            </button>
-
-            <div class="ai-response" id="geminiResult">
-                <div class="gemini-badge">
-                    <span>✨ Analysis by Gemini Pro</span>
-                </div>
-
-                <div class="score-grid">
-                    <div class="score-item">
-                        <span class="score-value safe" id="safetyScore">--</span>
-                        <span class="score-label">Safety Score</span>
-                    </div>
-                    <div class="score-item">
-                        <span class="score-value" id="lightScore">--</span>
-                        <span class="score-label">Visibility</span>
-                    </div>
-                </div>
-
-                <div class="analysis-text">
-                    <p class="recommendation" id="aiTitle">Loading analysis...</p>
-                    <p class="details" id="aiDesc">Gemini is processing satellite metadata...</p>
-                </div>
-            </div>
-        </div>
-    </div>
+  <!-- MAP -->
+  <div id="map"></div>
 
 </body>
 </html>
