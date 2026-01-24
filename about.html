@@ -5,7 +5,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-    
+
+    <link rel="icon" href="assets/icons/luminapath_logo-removebg-preview.png" type="image/x-icon">
     <script src="js/auth_state.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -13,20 +14,20 @@
 <body>
 
     <header class="navbar">
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="maps.html">Maps</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="maps.html">Maps</a>
 
-      <!-- <a href="profile.html" id="profile-link" style="display: none; color: #4CAF50;">Profile</a> -->
-      <a href="register.html" id="auth-btn" class="nav-btn">Register</a>
-    </nav>
-  </header>
-       
+            <!-- <a href="profile.html" id="profile-link" style="display: none; color: #4CAF50;">Profile</a> -->
+            <a href="register.html" id="auth-btn" class="nav-btn">Register</a>
+        </nav>
+    </header>
+
 
     <section class="about-section-1">
         <div class="content-wrapper">
-            <h1 class="main-title">About Us</h1>
+            <h1 class="main-title" id="about-title" data-text="About Us"></h1>
 
             <div class="info-block">
                 <h2>Why us?</h2>
@@ -98,6 +99,29 @@
 
         aboutSections.forEach((section) => {
             observer.observe(section);
+        });
+
+        function typeWriter(elementId, speed = 100) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+
+            const text = element.getAttribute('data-text');
+            element.innerHTML = "";
+            element.classList.add('typewriter-effect'); // Blinking cursor
+
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            setTimeout(type, 300);
+        }
+
+        window.addEventListener('load', () => {
+            typeWriter('about-title', 150); // Slower speed for big title
         });
     </script>
 </body>

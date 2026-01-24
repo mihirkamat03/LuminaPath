@@ -21,7 +21,7 @@
             <div class="blur-overlay"></div>
             <div class="brand-content">
                 <h1 class="logo-text">Lumina<span class="highlight">Path</span></h1>
-                <p class="tagline">Navigate the night with confidence.</p>
+                <p class="tagline" id="login-tagline" data-text="Navigate the night with confidence."></p>
             </div>
         </div>
 
@@ -75,7 +75,30 @@
             </div>
         </div>
     </div>
-    <script src="js/script_login.js"></script>
+    <script>
+    // TYPEWRITER FOR LOGIN PAGE
+    function typeWriter(elementId, speed = 40) {
+        const element = document.getElementById(elementId);
+        const text = element.getAttribute('data-text');
+        element.innerHTML = "";
+        element.classList.add('typewriter-effect');
+        
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            }
+        }
+        setTimeout(type, 500);
+    }
+
+    window.addEventListener('load', () => {
+        typeWriter('login-tagline');
+    });
+</script>
+<script src="js/script_login.js"></script>
 </body>
 
 </html>

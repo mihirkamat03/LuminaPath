@@ -197,3 +197,21 @@ h1 {
         grid-template-columns: 1fr;
     }
 }
+
+
+@media (max-width: 768px) {
+    .profile-container {
+        width: 95%;
+        margin-top: 20px;
+        padding-bottom: 80px; /* Space for fixed logout btn if used */
+    }
+    
+    .profile-card, .stats-grid {
+        width: 100%;
+        min-width: 0; /* Prevents overflow */
+    }
+    
+    .grid-box {
+        grid-template-columns: 1fr; /* Stack stats vertically */
+    }
+}

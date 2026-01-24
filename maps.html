@@ -8,57 +8,108 @@
 
   <link rel="stylesheet" href="css/style_map.css" />
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/icons/luminapath_logo-removebg-preview.png" type="image/x-icon">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
   <script src="js/auth_state.js"></script>
+
   <script type="module" src="js/script.js"></script>
 </head>
 
-<body>
+<body class="fade-in-page">
 
   <header class="navbar">
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
-      <a href="maps.html">Maps</a>
-      <!-- <a href="profile.html" id="profile-link" style="display: none; color: #4CAF50;">Profile</a> -->
+      <a href="maps.html" class="active-link">Maps</a>
+
+      <a href="profile.html" id="user-icon-container" class="user-icon-container" title="My Profile">
+        <i class="fas fa-user-circle user-icon"></i>
+      </a>
+
       <a href="register.html" id="auth-btn" class="nav-btn">Register</a>
     </nav>
   </header>
 
-  <div class="controls">
-    <img id="advait" src="./assets/icons/luminapath_logo-removebg-preview.png">
-    <input type="text" id="start" placeholder="Starting Location" />
-    <input type="text" id="end" placeholder="Destination" />
-    <button onclick="calculateRoute()">Find Safe Route</button>
+  <button id="floating-logout" class="floating-logout-btn" onclick="logoutUser()">
+    <i class="fas fa-sign-out-alt"></i> Logout
+  </button>
+
+  <div class="controls slide-in-left">
+    <div style="text-align: center; margin-bottom: 10px;">
+      <img id="advait" src="./assets/icons/luminapath_logo-removebg-preview.png" style="width: 80px; height: 80px;">
+      <h3 style="color: #333; margin-top: 5px; font-family: 'Montserrat', sans-serif;">Safest Route Finder</h3>
+    </div>
+
+    <div class="input-with-icon">
+      <i class="fas fa-map-marker-alt" style="color: #4CAF50;"></i>
+      <input type="text" id="start" placeholder="Starting Location" />
+    </div>
+
+    <div class="input-with-icon">
+      <i class="fas fa-flag-checkered" style="color: #FF5722;"></i>
+      <input type="text" id="end" placeholder="Destination" />
+    </div>
+
+    <button id="findRouteBtn" onclick="calculateRoute()">
+      <span id="btnText">Find Safe Route</span>
+      <i class="fas fa-search"></i>
+    </button>
+
+    <div class="test-mode">
+      <label>Simulation Mode:</label>
+      <select id="timeSimulation" onchange="calculateRoute()">
+        <option value="current">Real Time</option>
+        <option value="day">Force Day (Safe)</option>
+        <option value="night">Force Night (Risky)</option>
+      </select>
+    </div>
+
     <div id="routeFeedbackSection" class="feedback-container hidden">
-      <p>Give Feedback:</p>
-      <div id="circleContainer" class="circle-row"></div>
+      <p style="font-size: 0.9rem; color: #666;">Route Options:</p>
+      <div id="circleContainer" class="circle-row">
+      </div>
     </div>
   </div>
 
-  <div id="legend">
+  <div id="legend" class="fade-in-up">
     <span class="safe">🟢 Safe</span>
     <span class="moderate">🟠 Moderate</span>
     <span class="risky">🔴 Risky</span>
   </div>
 
-  <!-- MAP -->
   <div id="map"></div>
+
   <div id="safetyScoreBox" class="safety-glass-container hidden">
     <div class="safety-header">
-      <span class="safety-title">Route Safety</span>
-      <span id="safetyPercent" class="safety-value">88%</span>
+      <span class="safety-title">SAFETY SCORE</span>
+      <span id="safetyPercent" class="safety-value">--%</span>
     </div>
     <div class="progress-track">
-      <div id="safetyBarFill" class="progress-fill" style="width: 88%;"></div>
+      <div id="safetyBarFill" class="progress-fill" style="width: 0%;"></div>
     </div>
   </div>
 
-
+  <div id="feedbackModal" class="feedback-overlay hidden">
+    <div class="comic-speech-bubble">
+      <div class="comic-content">
+        <h2 class="comic-title" id="feedbackTitle">Got feedback?</h2>
+        <p class="comic-subtitle">We’ll take it seriously <br>
+          (unlike shortcuts) XD.</p>
+        <textarea id="feedbackText" placeholder="Was it well-lit? Any trouble?"></textarea>
+        <div class="comic-footer">
+          <button class="btn-zap" onclick="submitFeedback()">REPORT</button>
+          <button class="btn-cancel" onclick="closeFeedback()">CANCEL</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 

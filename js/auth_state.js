@@ -7,6 +7,7 @@ const firebaseConfig = {
     appId: "1:147151629612:web:5f70cc0804913628c65089"
 };
 
+// Initialize only if not already initialized
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
@@ -14,38 +15,60 @@ const auth = firebase.auth();
 const db = firebase.database();
 
 auth.onAuthStateChanged((user) => {
-    const authBtn = document.getElementById('auth-btn');
-    const profileLink = document.getElementById('profile-link');
+    // Elements to toggle
+    const registerBtn = document.getElementById('auth-btn'); 
+    const userIcon = document.getElementById('user-icon-container'); 
+    const logoutBtn = document.getElementById('floating-logout'); 
     
     if (user) {
-        if (authBtn) {
-            authBtn.innerText = "Logout";
-            authBtn.href = "#";
-            authBtn.onclick = logoutUser;
-        }
-        if (profileLink) {
-            profileLink.style.display = "inline-block"; 
-        }
+        // --- LOGGED IN STATE ---
+        if (registerBtn) registerBtn.style.display = "none"; 
+        if (userIcon) userIcon.style.display = "flex";       
+        if (logoutBtn) logoutBtn.style.display = "flex";    
         
+        // Load Profile Data if on profile page
         if (window.location.pathname.includes("profile.html")) {
             loadProfileData(user);
         }
 
     } else {
-        if (authBtn) {
-            authBtn.innerText = "Register";
-            authBtn.href = "register.html";
-            authBtn.onclick = null;
-        }
-        if (profileLink) {
-            profileLink.style.display = "none"; 
-        }
+        // --- LOGGED OUT STATE ---
+        if (registerBtn) registerBtn.style.display = "block"; 
+        if (userIcon) userIcon.style.display = "none";        
+        if (logoutBtn) logoutBtn.style.display = "none";      
 
+        // Protect Profile Page
         if (window.location.pathname.includes("profile.html")) {
             window.location.href = "register.html";
         }
     }
 });
+
+// --- THE MISSING FUNCTION IS ADDED HERE ---
+function loadProfileData(user) {
+    // 1. Set Email from Auth
+    const emailEl = document.getElementById('user-email');
+    if (emailEl) emailEl.innerText = user.email;
+
+    // 2. Fetch Username from Database
+    const nameEl = document.getElementById('user-name');
+    const welcomeEl = document.getElementById('welcome-msg');
+
+    db.ref('users/' + user.uid).once('value')
+        .then((snapshot) => {
+            const data = snapshot.val();
+            if (data && data.username) {
+                if (nameEl) nameEl.innerText = data.username;
+                if (welcomeEl) welcomeEl.innerText = `Welcome Back, ${data.username}!`;
+            } else {
+                if (nameEl) nameEl.innerText = "Lumina User";
+            }
+        })
+        .catch((error) => {
+            console.error("Error fetching data:", error);
+            if (nameEl) nameEl.innerText = "User";
+        });
+}
 
 // Logout Function
 function logoutUser() {
@@ -54,23 +77,5 @@ function logoutUser() {
         window.location.href = "index.html";
     }).catch((error) => {
         console.error("Logout Error:", error);
-    });
-}
-
-function loadProfileData(user) {
-    const nameEl = document.getElementById('user-name');
-    const emailEl = document.getElementById('user-email');
-    const welcomeEl = document.getElementById('welcome-msg');
-    
-    if (emailEl) emailEl.innerText = user.email;
-
-    db.ref('users/' + user.uid).once('value').then((snapshot) => {
-        const data = snapshot.val();
-        if (data && data.username) {
-            if (nameEl) nameEl.innerText = data.username;
-            if (welcomeEl) welcomeEl.innerText = `Welcome back, ${data.username.split(' ')[0]}!`;
-        } else {
-            if (nameEl) nameEl.innerText = "Lumina User";
-        }
     });
 }

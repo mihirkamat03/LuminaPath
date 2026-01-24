@@ -115,6 +115,13 @@ body{
     font-family: sans-serif;
 }
 
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}
+
 .hidden { display: none !important; }
 
 .safety-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
@@ -165,8 +172,170 @@ body{
 }
 
 /* Glassy background for the circles */
-.circle-green { background: #27ae60; }
-.circle-orange { background: #f39c12; }
-.circle-red { background: #e74c3c; }
+.circle-green { background: #27ae60;  }
+.circle-orange { background: #f39c12;  }
+.circle-red { background: #e74c3c;  }
 
 .hidden { display: none !important; }
+
+/* Darken the map when feedback opens */
+.feedback-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999; /* Higher than everything */
+}
+
+/* Glassy Comic Bubble */
+.comic-speech-bubble {
+    position: relative;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    border: 4px solid #333; /* Thick comic outline */
+    border-radius: 40px;
+    padding: 25px;
+    width: 300px;
+    box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.15); /* Hard comic shadow */
+    animation: comicPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* The Speech Bubble Tail (The "Triangle") */
+.bubble-tail {
+    position: absolute;
+    left: -30px; /* Positions it to point back at the sidebar circles */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 30px solid #333; /* Triangle pointing left */
+}
+
+/* Inner elements */
+.comic-title { 
+    font-weight: 900; 
+    font-style: italic; 
+    margin: 0; 
+    color: #222; 
+}
+
+textarea {
+    width: 100%;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.4);
+    border: 2px solid #333;
+    border-radius: 12px;
+    padding: 10px;
+    margin: 15px 0;
+}
+
+/* Buttons */
+.comic-footer { display: flex; gap: 10px; }
+.btn-zap , .btn-cancel { 
+    background: #ffcc00; /* Classic Comic Yellow */
+    border: 3px solid #333; 
+    border-radius: 40px;
+    padding: 10px; 
+    flex: 2; 
+    font-weight: bold; 
+    cursor: pointer;
+}
+.btn-cancel{
+  background: #ffffff;
+    border: 3px solid #333; 
+    border-radius: 40px;
+    padding: 10px; 
+    flex: 2; 
+    font-weight: bold; 
+    cursor: pointer;
+}
+#feedbackText{
+  color: rgb(0, 0, 0);
+}
+
+/* Pop Animation */
+@keyframes comicPop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+.hidden { display: none !important; }
+
+.test-mode {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.slide-up-enter {
+    animation: slideUpBox 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes slideUpBox {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 50px); /* Start lower */
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0); /* End at original position */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Stack controls at the top */
+    .controls {
+        top: 80px; /* Below navbar */
+        left: 5%;
+        width: 90%;
+        padding: 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    /* Hide the owl logo on mobile to save space */
+    #advait {
+        display: none;
+    }
+
+    /* Adjust Map Height */
+    #map {
+        height: 100vh;
+        top: 0;
+    }
+
+    /* Move Safety Score Box to top-right or just below controls */
+    .safety-glass-container {
+        bottom: 80px; /* Above legend */
+        left: 50%;
+        width: 90%;
+        padding: 10px;
+    }
+
+    /* Make legend smaller */
+    #legend {
+        bottom: 20px;
+        left: 10px;
+        font-size: 0.8rem;
+        padding: 8px;
+        width: calc(100% - 20px);
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+    
+    /* Adjust Modal size */
+    .comic-speech-bubble {
+        width: 90%;
+        margin: 0 auto;
+    }
+}

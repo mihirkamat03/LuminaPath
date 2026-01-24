@@ -19,7 +19,7 @@
 }
 
 .navbar a:nth-child(1), .navbar a:nth-child(2), .navbar a:nth-child(3) {
-    left: 7%;
+    left: 2%;
 }
 
 .navbar nav {
@@ -671,4 +671,301 @@ textarea:focus {
 
 .founders-section.active .founder-item:nth-child(3) {
     animation-delay: 0.8s;
+}
+
+
+
+.typewriter-cursor::after {
+    content: '|';
+    animation: blink 1s infinite;
+    color: #4caf4f00; 
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.typewriter-target {
+    min-height: 1em; 
+    margin-right: 200px;
+    display: inline-block;
+}
+
+button, .register_btn, .nav-btn, .submit-btn {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+button:hover, .register_btn:hover, .nav-btn:hover, .submit-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+button:active {
+    transform: translateY(-1px);
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.floating-anim {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* --- BOTTOM LEFT LOGOUT BUTTON --- */
+#fixed-logout {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(255, 0, 0, 0.2); /* Subtle Red */
+    border: 1px solid rgba(255, 0, 0, 0.4);
+    color: #ff6b6b;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    transition: 0.3s;
+    display: none; /* Hidden by default */
+}
+
+#fixed-logout:hover {
+    background: rgba(255, 0, 0, 0.8);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* --- USER ICON IN NAVBAR --- */
+.user-icon-container {
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+}
+
+.user-icon {
+    font-size: 1.8rem;
+    color: #4CAF50; /* Green */
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.user-icon:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px rgba(76, 175, 80, 0.5));
+}
+
+/* --- FLOATING LOGOUT BUTTON (Bottom Left) --- */
+.floating-logout-btn {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 20px;
+    left: 10px;
+    background: rgba(255, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    color: #ff4d4d;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    z-index: 9999;
+    transition: all 0.3s ease;
+    align-items: center;
+    gap: 8px;
+}
+
+.floating-logout-btn:hover {
+    background: rgba(255, 0, 0, 0.8);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+}
+
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+::-webkit-scrollbar-track {
+    background: #0a0a0a; 
+}
+::-webkit-scrollbar-thumb {
+    background: #333; 
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #4CAF50;
+}
+
+/* 2. PAGE FADE-IN TRANSITION */
+.fade-in-page {
+    animation: pageFadeIn 0.8s ease-out;
+}
+@keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 3. INPUT ICONS IN MAPS */
+.input-with-icon {
+    position: relative;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.input-with-icon i {
+    position: absolute;
+    left: 12px;
+    z-index: 2;
+}
+.input-with-icon input {
+    padding-left: 35px !important; /* Make room for icon */
+}
+
+/* 4. LOADING BUTTON STATE */
+.loading-btn {
+    background-color: #777 !important;
+    cursor: wait !important;
+    pointer-events: none;
+}
+
+/* --- MOBILE RESPONSIVENESS (Add to bottom of style.css) --- */
+@media (max-width: 768px) {
+    /* Navbar fixes */
+    .navbar {
+        background: rgba(0,0,0,0.8);
+        padding: 15px;
+    }
+    .navbar nav {
+        gap: 20px;
+        justify-content: space-between;
+    }
+    .navbar a {
+        font-size: 0.9rem;
+    }
+    .nav-btn {
+        position: static; /* Reset absolute position */
+        padding: 5px 10px;
+        background: #4CAF50;
+        border-radius: 5px;
+    }
+    .user-icon {
+        font-size: 1.4rem;
+    }
+
+    /* Hero Section Text Scaling */
+    .logo-text {
+        font-size: 4rem; /* Reduced from 10rem */
+        text-indent: 0;
+        line-height: 1.1;
+    }
+    .tagline {
+        font-size: 1.2rem;
+        position: relative;
+        left: 0;
+        bottom: 0;
+        margin-top: 20px;
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    /* Fix Absolute Positioning in Section 2 & 3 */
+    .hero-section2, .hero-section3, .contact {
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .hero-content2, .hero-content3, .contact-content {
+        position: relative;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Headline Fixes */
+    .headline, .desc, .desc3, .headline_contact {
+        position: relative;
+        left: auto;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        opacity: 1 !important; /* Force visible for safety */
+        text-align: center;
+        width: 100%;
+        transform: none !important; /* Reset animations that might hide text */
+    }
+
+    .headline, .headline_contact {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        text-indent: 0;
+    }
+
+    .desc, .desc3 {
+        font-size: 1rem;
+        max-width: 90%;
+        margin-bottom: 30px;
+    }
+
+    /* Register Button */
+    .register_btn {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        transform: none;
+        margin-top: 30px;
+    }
+
+    /* Contact Section Layout */
+    .contact-content p, .contact-content h1 {
+        position: relative;
+        left: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        font-size: 1.1rem !important;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    .social-icon img {
+        position: relative;
+        left: auto;
+        top: auto;
+        margin-top: 20px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    /* Footer Text */
+    .typewriter-target[style*="font-size: 8rem"] {
+        font-size: 2.5rem !important;
+        position: relative !important;
+        margin-top: 40px;
+    }
 }
