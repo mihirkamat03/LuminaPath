@@ -36,12 +36,26 @@ function getSafetyScore(index) {
   if (index === 1) score += 1;
   if (index === 2) score -= 2;
 
+  let percent = 0;
+  if (score >= 3) percent = 88;      // SAFE
+  else if (score >= 1) percent = 62; // MODERATE
+  else percent = 35;                 // RISKY
+
+  const box = document.getElementById('safetyScoreBox');
+  const bar = document.getElementById('safetyBarFill');
+  const text = document.getElementById('safetyPercent');
+
+  if (box && bar && text) {
+    box.classList.remove('hidden'); 
+    text.innerText = percent + "%";
+    bar.style.width = percent + "%";
+  }
+
   if (score >= 3) return "SAFE";
   if (score >= 1) return "MODERATE";
   return "RISKY";
 }
 
-/* CLEAR OLD ROUTES */
 function clearRoutes() {
   renderers.forEach(r => r.setMap(null));
   renderers = [];
@@ -50,7 +64,7 @@ function clearRoutes() {
 /* CALCULATE ROUTE */
 function calculateRoute() {
   if (!directionsService) {
-    alert("Map still loading, thoda wait kar 🤦‍♂️");
+    alert("Map still loading");
     return;
   }
 
@@ -58,7 +72,7 @@ function calculateRoute() {
   const end = document.getElementById("end").value;
 
   if (!start || !end) {
-    alert("Dono locations daal bhai");
+    alert("Please enter both locations");
     return;
   }
 
@@ -75,7 +89,7 @@ function calculateRoute() {
       if (status === "OK") {
         drawRoutes(result);
       } else {
-        alert("Entered Route not forund!! Please try again with a different location.");
+        alert("Entered Route not found!! Please try again with a different location.");
       }
     }
   );
@@ -88,7 +102,7 @@ function drawRoutes(result) {
 
     const color =
       safety === "SAFE" ? "green" :
-      safety === "MODERATE" ? "orange" : "red";
+        safety === "MODERATE" ? "orange" : "red";
 
     const renderer = new google.maps.DirectionsRenderer({
       map,

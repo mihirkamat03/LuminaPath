@@ -12,6 +12,7 @@
 .navbar {
     position: fixed;
     top: 0;
+    left: 5.5%;
     width: 100%;
     padding: 20px 0;
     z-index: 1000;
@@ -48,6 +49,12 @@
 
 .navbar a:hover::after {
     transform: scaleX(1);
+}
+
+.nav-btn {
+    position: absolute;
+    right: -24%;
+    transition: 0.3s;
 }
 
 .hero-section {
@@ -271,7 +278,7 @@
     height: 50px;
     padding: 10px 30px;
     border-radius: 20px;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -599,6 +606,7 @@ textarea:focus {
         opacity: 0;
         transform: translateY(40px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
@@ -609,14 +617,14 @@ textarea:focus {
 .about-section-2 .info-block,
 .about-section-2 .register-btn-small,
 .founders-list .founder-item {
-    opacity: 0; 
+    opacity: 0;
 }
 
 .about-section-1.active .info-block,
 .about-section-2.active .info-block,
 .about-section-2.active .register-btn-small,
 .founders-section.active .founder-item {
-    animation: slideUpFade 0.8s ease-out forwards; 
+    animation: slideUpFade 0.8s ease-out forwards;
 }
 
 .about-section-1.active .info-block {
@@ -626,9 +634,11 @@ textarea:focus {
 .about-section-2.active .info-block:nth-child(1) {
     animation-delay: 0.2s;
 }
+
 .about-section-2.active .info-block:nth-child(2) {
     animation-delay: 0.5s;
 }
+
 .about-section-2.active .register-btn-small {
     animation-delay: 0.8s;
 }
@@ -636,9 +646,11 @@ textarea:focus {
 .founders-section.active .founder-item:nth-child(1) {
     animation-delay: 0.2s;
 }
+
 .founders-section.active .founder-item:nth-child(2) {
     animation-delay: 0.5s;
 }
+
 .founders-section.active .founder-item:nth-child(3) {
     animation-delay: 0.8s;
 }

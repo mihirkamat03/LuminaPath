@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Lumina Path</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/icons/luminapath_logo-removebg-preview.png" type="image/x-icon">
+    <script src="js/auth_state.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -16,13 +18,15 @@
             <a href="index.html">Home</a>
             <a href="about.html">About Us</a>
             <a href="maps.html">Maps</a>
+            <!-- <a href="profile.html" id="profile-link" style="display: none; color: #4CAF50;">Profile</a> -->
+            <a href="register.html" id="auth-btn" class="nav-btn">Register</a>
         </nav>
     </header>
 
     <section class="about-section-1">
         <div class="content-wrapper">
             <h1 class="main-title">About Us</h1>
-            
+
             <div class="info-block">
                 <h2>Why us?</h2>
                 <p>Current navigation technology is built for speed, not security, often leading vulnerable
@@ -51,7 +55,7 @@
                     setting in every journey.</p>
             </div>
 
-            <div class="register-btn-small">
+            <div class="register-btn-small" onclick="window.location.href='register.html'">
                 Register <span>&nearr;</span>
             </div>
         </div>
@@ -60,7 +64,7 @@
     <section class="founders-section">
         <div class="content-wrapper">
             <h1 class="founders-title">Founders</h1>
-            
+
             <div class="founders-list">
                 <div class="founder-item">
                     <h3>Aarush Nalwade:</h3>
@@ -86,7 +90,7 @@
                 }
             });
         }, {
-            threshold: 0.15 
+            threshold: 0.15
         });
 
         const aboutSections = document.querySelectorAll('.about-section-1, .about-section-2, .founders-section');
@@ -96,4 +100,5 @@
         });
     </script>
 </body>
+
 </html>

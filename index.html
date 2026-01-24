@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumina Path</title>
+    <link rel="icon" href="assets/icons/luminapath_logo-removebg-preview.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -16,8 +17,15 @@
             <a href="index.html">Home</a>
             <a href="about.html">About Us</a>
             <a href="maps.html">Maps</a>
+            <!-- <a href="profile.html" id="profile-link" style="display: none; color: #4CAF50;">Profile</a> -->
+            <a href="register.html" id="auth-btn" class="nav-btn">Register</a>
         </nav>
     </header>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="js/auth_state.js"></script>
 
     <main class="hero-section">
         <div class="hero-content">
@@ -39,10 +47,13 @@
             <p class="desc3">We believe the shortest distance between two points shouldn’t be measured in miles, but in
                 peace of mind. <br>By leveraging AI to analyze real-time lighting data and foot traffic patterns, our
                 platform goes beyond the standard
-                GPS to prioritize your security over speed.<br> We aren't just mapping streets; we are rerouting the future
+                GPS to prioritize your security over speed.<br> We aren't just mapping streets; we are rerouting the
+                future
                 of urban safety one bright path at a time.</p>
         </div>
-        <div class="register_btn">Register  <p style="display: flex; margin-left: 10px; font-size: 2rem; margin-top: -12px;">→</p></div>
+        <div class="register_btn" onclick="window.location.href='register.html'">Register <p
+                style="display: flex; margin-left: 10px; font-size: 2rem; margin-top: -12px;">→</p>
+        </div>
     </main>
 
     <main class="contact">
@@ -108,4 +119,4 @@
 
 </body>
 
-</html> 
+</html>
