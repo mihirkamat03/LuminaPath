@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina Path</title>
+    <link rel="icon" href="assets/icons/luminapath_logo-removebg-preview.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="maps.html">Maps</a>
+            <!-- <a href="profile.html" id="profile-link" style="display: none; color: #4CAF50;">Profile</a> -->
+            <a href="register.html" id="auth-btn" class="nav-btn">Register</a>
+        </nav>
+    </header>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="js/auth_state.js"></script>
+
+    <main class="hero-section">
+        <div class="hero-content">
+            <h1 class="logo-text">Lumina<br>Path</h1>
+            <p class="tagline">Shortest path isn't always the right one.</p>
+        </div>
+    </main>
+
+    <main class="hero-section2">
+        <div class="hero-content2">
+            <h1 class="headline">The Way, Made<br>Brighter</h1>
+            <p class="desc">Ditch the guesswork of sketchy shortcuts and embrace the power of AI. <br>Map, protect, or
+                bring the peace of mind as we bridge the gap between shortest and safest, one streetlight at a time.</p>
+        </div>
+    </main>
+
+    <main class="hero-section3">
+        <div class="hero-content3">
+            <p class="desc3">We believe the shortest distance between two points shouldn’t be measured in miles, but in
+                peace of mind. <br>By leveraging AI to analyze real-time lighting data and foot traffic patterns, our
+                platform goes beyond the standard
+                GPS to prioritize your security over speed.<br> We aren't just mapping streets; we are rerouting the
+                future
+                of urban safety one bright path at a time.</p>
+        </div>
+        <div class="register_btn" onclick="window.location.href='register.html'">Register <p
+                style="display: flex; margin-left: 10px; font-size: 2rem; margin-top: -12px;">→</p>
+        </div>
+    </main>
+
+    <main class="contact">
+        <div class="contact-content">
+            <h1 class="headline_contact">Contact Us</h1>
+            <h1 style="position: absolute; top: 30%; left: 2%; font-size: 1.5rem; left: 2%;">Phone Number:</h1>
+            <p style="position: absolute; top: 36%; left: 2%; font-size: 1.2rem; font-weight: 400;" class="contact_nos">
+                +91 93210 26986</p>
+            <p style="position: absolute; top: 40%; left: 2%; font-size: 1.2rem; font-weight: 400;" class="contact_nos">
+                +91 70212 96177</p>
+            <p style="position: absolute; top: 44%; left: 2%; font-size: 1.2rem; font-weight: 400;" class="contact_nos">
+                +91 98675 26734</p>
+
+
+            <h1 style="position: absolute; top: 52%; left: 2%; font-size: 1.5rem; left: 2%;">Socials:</h1>
+            <a href="https://instagram.com/mihirkamat_07" target="_blank" class="social-icon insta">
+                <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
+            </a>
+
+            <h1 style="position: absolute; bottom: 2%; left: 0; font-size: 8rem; width: 100%; align-items: center;">
+                Rerouting For Safety</h1>
+
+
+            <!-- <div class="form-card">
+            <form>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="number" placeholder="+91 ...">
+                </div>
+                <div class="form-group">
+                    <label>How can we help?</label>
+                    <textarea rows="4" placeholder="Describe your issue in brief"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Send Message</button>
+            </form>
+        </div> -->
+        </div>
+    </main>
+
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+
+        const sections = document.querySelectorAll('.hero-section2, .hero-section3');
+
+        sections.forEach((section) => {
+            observer.observe(section);
+        });
+    </script>
+
+
+</body>
+
+</html>
