@@ -15,29 +15,23 @@ const auth = firebase.auth();
 const db = firebase.database();
 
 auth.onAuthStateChanged((user) => {
-    // Elements to toggle
     const registerBtn = document.getElementById('auth-btn'); 
-    const userIcon = document.getElementById('user-icon-container'); 
-    const logoutBtn = document.getElementById('floating-logout'); 
+    const userDock = document.getElementById('user-dock'); // NEW ID
     
     if (user) {
-        // --- LOGGED IN STATE ---
+        // --- LOGGED IN ---
         if (registerBtn) registerBtn.style.display = "none"; 
-        if (userIcon) userIcon.style.display = "flex";       
-        if (logoutBtn) logoutBtn.style.display = "flex";    
+        if (userDock) userDock.classList.remove('hidden'); // Show the Dock
         
-        // Load Profile Data if on profile page
         if (window.location.pathname.includes("profile.html")) {
             loadProfileData(user);
         }
 
     } else {
-        // --- LOGGED OUT STATE ---
+        // --- LOGGED OUT ---
         if (registerBtn) registerBtn.style.display = "block"; 
-        if (userIcon) userIcon.style.display = "none";        
-        if (logoutBtn) logoutBtn.style.display = "none";      
+        if (userDock) userDock.classList.add('hidden'); // Hide the Dock
 
-        // Protect Profile Page
         if (window.location.pathname.includes("profile.html")) {
             window.location.href = "register.html";
         }

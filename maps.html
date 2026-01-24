@@ -23,19 +23,24 @@
 
 <body class="fade-in-page">
 
-  <header class="navbar">
+  <header class="navbar-maps">
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
       <a href="maps.html" class="active-link">Maps</a>
-
-      <a href="profile.html" id="user-icon-container" class="user-icon-container" title="My Profile">
-        <i class="fas fa-user-circle user-icon"></i>
-      </a>
-
       <a href="register.html" id="auth-btn" class="nav-btn">Register</a>
     </nav>
   </header>
+
+  <div id="user-dock" class="user-dock hidden">
+    <div class="dock-item" onclick="window.location.href='profile.html'" title="My Profile">
+      <i class="fas fa-user-circle"></i>
+    </div>
+    <div class="dock-divider"></div>
+    <div class="dock-item logout-trigger" onclick="logoutUser()" title="Logout">
+      <i class="fas fa-sign-out-alt"></i>
+    </div>
+  </div>
 
   <button id="floating-logout" class="floating-logout-btn" onclick="logoutUser()">
     <i class="fas fa-sign-out-alt"></i> Logout
@@ -44,12 +49,14 @@
   <div class="controls slide-in-left">
     <div style="text-align: center; margin-bottom: 10px;">
       <img id="advait" src="./assets/icons/luminapath_logo-removebg-preview.png" style="width: 80px; height: 80px;">
-      <h3 style="color: #333; margin-top: 5px; font-family: 'Montserrat', sans-serif;">Safest Route Finder</h3>
+      <h3 style="color: #333; margin-top: 5px; font-family: 'Montserrat', sans-serif;">LuminaPath</h3>
     </div>
 
     <div class="input-with-icon">
-      <i class="fas fa-map-marker-alt" style="color: #4CAF50;"></i>
+      <!-- <i class="fas fa-map-marker-alt" style="color: #4CAF50;"></i> -->
       <input type="text" id="start" placeholder="Starting Location" />
+      <i class="fas fa-crosshairs" onclick="useMyLocation()"
+        style="position: absolute; right: 10px; cursor: pointer; color: #666;" title="Use My Location"></i>
     </div>
 
     <div class="input-with-icon">
@@ -62,13 +69,28 @@
       <i class="fas fa-search"></i>
     </button>
 
-    <div class="test-mode">
-      <label>Simulation Mode:</label>
-      <select id="timeSimulation" onchange="calculateRoute()">
-        <option value="current">Real Time</option>
-        <option value="day">Force Day (Safe)</option>
-        <option value="night">Force Night (Risky)</option>
-      </select>
+    <div class="custom-dropdown-container">
+      <label style="font-weight: 600; font-size: 0.9rem; color: #555; margin-bottom: 5px; display: block;">Simulation
+        Mode:</label>
+
+      <div class="dropdown-trigger" onclick="toggleDropdown()">
+        <span id="selected-text">Real Time 🕒</span>
+        <i class="fas fa-chevron-down arrow-icon"></i>
+      </div>
+
+      <div class="dropdown-options" id="dropdown-options">
+        <div class="dropdown-item" onclick="selectOption('current', 'Real Time 🕒')" style="--delay: 0.1s">
+          <span>Real Time</span> <i class="fas fa-clock"></i>
+        </div>
+        <div class="dropdown-item" onclick="selectOption('day', 'Force Day ☀️')" style="--delay: 0.2s">
+          <span>Force Day (Safe)</span> <i class="fas fa-sun" style="color: orange;"></i>
+        </div>
+        <div class="dropdown-item" onclick="selectOption('night', 'Force Night 🌙')" style="--delay: 0.3s">
+          <span>Force Night (Risky)</span> <i class="fas fa-moon" style="color: #6C63FF;"></i>
+        </div>
+      </div>
+
+      <input type="hidden" id="timeSimulation" value="current">
     </div>
 
     <div id="routeFeedbackSection" class="feedback-container hidden">
@@ -82,6 +104,10 @@
     <span class="safe">🟢 Safe</span>
     <span class="moderate">🟠 Moderate</span>
     <span class="risky">🔴 Risky</span>
+  </div>
+
+  <div id="map-loader" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1;">
+    <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: #4CAF50;"></i>
   </div>
 
   <div id="map"></div>
@@ -110,6 +136,38 @@
       </div>
     </div>
   </div>
+
+  <script>
+    // --- CUSTOM DROPDOWN LOGIC ---
+    function toggleDropdown() {
+      const container = document.querySelector('.custom-dropdown-container');
+      container.classList.toggle('active');
+    }
+
+    function selectOption(value, text) {
+      // 1. Update the UI Text
+      document.getElementById('selected-text').innerText = text;
+
+      // 2. Update the HIDDEN input value (So your map logic can read it)
+      document.getElementById('timeSimulation').value = value;
+
+      // 3. Close the dropdown
+      document.querySelector('.custom-dropdown-container').classList.remove('active');
+
+      // 4. Trigger the Map Calculation (Your existing function)
+      if (typeof calculateRoute === "function") {
+        calculateRoute();
+      }
+    }
+
+    // Close dropdown if clicking outside
+    document.addEventListener('click', function (e) {
+      const container = document.querySelector('.custom-dropdown-container');
+      if (!container.contains(e.target)) {
+        container.classList.remove('active');
+      }
+    });
+  </script>
 
 </body>
 

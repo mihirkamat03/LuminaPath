@@ -12,11 +12,73 @@ body{
 /* MAP FULLSCREEN */
 #map {
   position: fixed;
-  top: 70px;
+  top: 100;           /* Starts at the very top */
   left: 0;
   width: 100vw;
-  height: 89.1vh;
+  height: 100vh;    /* Covers full height */
   z-index: 0;
+}
+
+/* --- 2. FLOATING INDIVIDUAL NAVBAR ITEMS --- */
+.navbar-maps {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  pointer-events: none; /* Allows clicking through the empty space around buttons */
+}
+
+.navbar-maps nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;        /* Space between the glass pills */
+  pointer-events: auto; /* Re-enables clicking on the buttons themselves */
+}
+
+/* The Glass Pills */
+.navbar-maps nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: 'Montserrat', sans-serif;
+  
+  /* Glassmorphism Style */
+  background: rgba(20, 20, 20, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  
+  padding: 10px 25px;
+  border-radius: 50px; /* Pill shape */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  
+  /* Resetting inherited styles */
+  position: static !important; 
+  margin: 0 !important;
+}
+
+/* Hover Effects */
+.navbar-maps nav a:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+/* Active Page Style */
+.navbar-maps nav a.active-link {
+  background: #4CAF50; /* Green */
+  color: white;
+  border-color: #4CAF50;
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
+}
+
+/* Special styling for Register/Logout button to fit in */
+.navbar-maps .nav-btn {
+  /* Ensuring it looks just like the others */
+  right: auto !important; 
+  background: rgba(20, 20, 20, 0.75);
 }
 
 /* NAVBAR */
@@ -38,8 +100,8 @@ body{
 
 .controls {
   position: absolute;
-  top: 20%; 
-  left: 20px;
+  top: 10%; 
+  left: 10px;
   width: 280px; 
   background: white;
   padding: 20px;
@@ -101,15 +163,15 @@ body{
 
 .safety-glass-container {
     position: fixed;
-    bottom: 12.5%;
-    left: 11.5%;
+    bottom: 10.5%;
+    left: 10.8%;
     transform: translateX(-50%);
     z-index: 9999;
-    width: 265px;
+    width: 275px;
     padding: 8px 20px;
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(15px);
-    border-radius: 40px; /* Rounded pill shape */
+    border-radius: 20px; /* Rounded pill shape */
     border: 1px solid rgba(255, 255, 255, 0.4);
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     font-family: sans-serif;
@@ -337,5 +399,300 @@ textarea {
     .comic-speech-bubble {
         width: 90%;
         margin: 0 auto;
+    }
+}
+
+
+/* USER DOCK (Bottom Right Capsule) */
+.user-dock {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    background: rgba(20, 20, 20, 0.85); /* Dark background */
+    backdrop-filter: blur(12px); /* Glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px; /* Pill shape */
+    padding: 8px 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.user-dock:hover {
+    transform: translateY(-5px);
+    border-color: rgba(76, 175, 80, 0.5);
+}
+
+.user-dock.hidden {
+    display: none !important;
+}
+
+.dock-item {
+    color: white;
+    font-size: 1.5rem;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dock-item:hover {
+    color: #4CAF50; /* Green glow */
+    transform: scale(1.1);
+}
+
+.logout-trigger:hover {
+    color: #ff4d4d; /* Red for logout */
+}
+
+.dock-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 0 5px;
+}
+
+/* Mobile Adjustment */
+@media (max-width: 768px) {
+    .user-dock {
+        bottom: 90px; /* Move up so it doesn't hit the legend/attribution */
+        right: 20px;
+    }
+}
+
+
+/* --- CUSTOM ANIMATED DROPDOWN --- */
+.custom-dropdown-container {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.dropdown-trigger {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.dropdown-trigger:hover {
+    background: #fff;
+    border-color: #4CAF50;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.15);
+}
+
+.arrow-icon {
+    transition: transform 0.3s ease;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* Rotate arrow when active */
+.custom-dropdown-container.active .arrow-icon {
+    transform: rotate(180deg);
+}
+
+/* The List Container */
+.dropdown-options {
+    position: absolute;
+    top: 110%; /* Just below the trigger */
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    overflow: hidden;
+    
+    /* Hidden State */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+/* Active State (Visible) */
+.custom-dropdown-container.active .dropdown-options {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Individual Items */
+.dropdown-item {
+    padding: 12px 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #444;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: background 0.2s;
+    
+    /* Animation Start State */
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+}
+
+/* THE STAGGERED ANIMATION LOGIC */
+.custom-dropdown-container.active .dropdown-item {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: var(--delay); /* Uses the CSS variable we added in HTML */
+}
+
+
+@media (max-width: 768px) {
+  .navbar-maps {
+    top: auto;
+    bottom: 20px; /* Move navbar to bottom on mobile for easier reach? */
+    /* OR keep at top but scale down */
+    top: 15px;
+  }
+  
+  .navbar-maps nav {
+    gap: 8px;
+  }
+  
+  .navbar-maps nav a {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    backdrop-filter: blur(8px);
+  }
+}
+
+
+/* =========================================
+   🚀 HIGH-END ENTRANCE ANIMATIONS
+   (Paste at bottom of style_map.css)
+   ========================================= */
+
+/* 1. MAP REVEAL (Subtle Scale & Fade) */
+#map {
+    animation: mapReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transform-origin: center center;
+}
+
+@keyframes mapReveal {
+    0% {
+        opacity: 0;
+        transform: scale(1.05); /* Starts slightly zoomed in */
+        filter: blur(10px); /* Starts blurry */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+/* 2. NAVBAR (Slide Down Smoothly) */
+.navbar-maps {
+    animation: slideDownGlass 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: 0.3s; /* Waits for map */
+    opacity: 0; /* Hidden initially */
+    transform: translateY(-50px);
+}
+
+@keyframes slideDownGlass {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 3. CONTROLS PANEL (Elastic Slide from Left) */
+.controls {
+    animation: elasticSlideRight 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation-delay: 0.5s; /* Waits for navbar */
+    opacity: 0;
+    transform: translateX(-100px);
+}
+
+@keyframes elasticSlideRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 4. LEGEND & USER DOCK (Pop Up from Bottom) */
+#legend, .user-dock {
+    animation: popUpBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 0.8s; /* Appears last */
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+}
+
+@keyframes popUpBounce {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 5. INTERACTIVE HOVER EFFECTS (Making it feel alive) */
+.controls:hover, #legend:hover, .user-dock:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+/* 6. BUTTON PULSE (Find Route Button) */
+#findRouteBtn {
+    position: relative;
+    overflow: hidden;
+}
+
+#findRouteBtn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%) rotate(45deg) translateY(100%);
+    transition: transform 0.6s ease;
+}
+
+#findRouteBtn:hover::after {
+    transform: translate(-50%, -50%) rotate(45deg) translateY(-100%); /* Shine effect */
+}
+
+/* 7. LOADING SPINNER ENTRANCE */
+#map-loader {
+    animation: fadeOutLoader 0.5s ease-out 2s forwards; /* Disappears after 2s */
+}
+
+@keyframes fadeOutLoader {
+    to {
+        opacity: 0;
+        visibility: hidden;
     }
 }

@@ -148,6 +148,35 @@ function calculateRoute() {
     return;
   }
 
+  function useMyLocation() {
+  if (navigator.geolocation) {
+    const input = document.getElementById("start");
+    input.placeholder = "Locating...";
+
+    navigator.geolocation.getCurrentPosition((position) => {
+        const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+        };
+
+        // Use Google Geocoder to get the address
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ location: pos }, (results, status) => {
+            if (status === "OK" && results[0]) {
+                input.value = results[0].formatted_address;
+            } else {
+                input.value = `${pos.lat}, ${pos.lng}`; // Fallback
+            }
+        });
+    }, () => {
+        alert("Location access denied.");
+        input.placeholder = "Starting Location";
+    });
+  }
+}
+// Make it global
+window.useMyLocation = useMyLocation;
+
   // UX: Loading State
   const originalText = btnText.innerText;
   btnText.innerText = "Calculating...";
@@ -252,3 +281,14 @@ window.submitFeedback = submitFeedback;
 
 /* START */
 loadGoogleMaps();
+
+document.addEventListener('DOMContentLoaded', () => {
+    const inputs = [document.getElementById('start'), document.getElementById('end')];
+    inputs.forEach(input => {
+        input.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                calculateRoute();
+            }
+        });
+    });
+});
