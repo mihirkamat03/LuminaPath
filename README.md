@@ -45,4 +45,3 @@ Built with ❤️ at **[Hyphen'26 Hackathon]** by:
 
 ---
 *© 2026 LuminaPath. Open Innovation for Women's Safety.*
->>>>>>> a2027aae10bd744b1f1e9650888ad512b325176b
