@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,64 +53,4 @@
 
 </body>
 
-=======
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LuminaPath - Maps</title>
-  <link rel="icon" href="assets/icons/luminapath_logo-removebg-preview.png" type="image/x-icon">
-
-  <link rel="stylesheet" href="css/style_map.css" />
-  <link rel="stylesheet" href="css/style.css">
-
-  <script type="module" src="js/script.js"></script>
-</head>
-
-<body>
-
-  <header class="navbar">
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="maps.html">Maps</a>
-      <!-- <a href="profile.html" id="profile-link" style="display: none; color: #4CAF50;">Profile</a> -->
-      <a href="register.html" id="auth-btn" class="nav-btn">Register</a>
-    </nav>
-  </header>
-
-  <div class="controls">
-    <input type="text" id="start" placeholder="Starting Location" />
-    <input type="text" id="end" placeholder="Destination" />
-    <button onclick="calculateRoute()">Find Safe Route</button>
-  </div>
-
-  <div id="legend">
-    <span class="safe">🟢 Safe</span>
-    <span class="moderate">🟠 Moderate</span>
-    <span class="risky">🔴 Risky</span>
-  </div>
-
-
-  <div id="safetyScoreBox" class="safety-glass-container hidden">
-    <div class="safety-header">
-      <span class="safety-title">Route Safety</span>
-      <span id="safetyPercent" class="safety-value">88%</span>
-    </div>
-    <div class="progress-track">
-      <div id="safetyBarFill" class="progress-fill" style="width: 88%;"></div>
-    </div>
-  </div>
-
-  <!-- MAP -->
-  <div id="map"></div>
-
-
-</body>
-
-<script src="js/auth_state.js"></script>
-
->>>>>>> a2027aae10bd744b1f1e9650888ad512b325176b
 </html>
