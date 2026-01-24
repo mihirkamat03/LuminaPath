@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,4 +79,86 @@
     <script src="js/script_login.js"></script>
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - LuminaPath</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/icons/luminapath_logo-removebg-preview.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/style_login.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="split-screen">
+        <div class="left-side">
+            <div class="blur-overlay"></div>
+            <div class="brand-content">
+                <h1 class="logo-text">Lumina<span class="highlight">Path</span></h1>
+                <p class="tagline">Navigate the night with confidence.</p>
+            </div>
+        </div>
+
+        <div class="right-side">
+            <div class="form-container">
+
+                <div class="toggle-box">
+                    <button class="toggle-btn active" onclick="showLogin()">Log In</button>
+                    <button class="toggle-btn" onclick="showSignup()">Register</button>
+                    <div class="toggle-slider"></div>
+                </div>
+
+                <form id="loginForm" class="input-group">
+                    <h2>Welcome Back</h2>
+                    <p class="subtitle">Enter your details to continue</p>
+
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" required>
+                    </div>
+
+                    <a href="#" class="forgot-pass">Forgot Password?</a>
+                    <button type="submit" class="submit-btn">Log In <i class="fas fa-arrow-right"></i></button>
+
+                </form>
+
+                <form id="signupForm" class="input-group hidden">
+                    <h2>Join the Safe Route</h2>
+                    <p class="subtitle">Create an account to start mapping</p>
+
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Full Name" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Create Password" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn register">Sign Up</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <script src="js/script_login.js"></script>
+</body>
+
+>>>>>>> a2027aae10bd744b1f1e9650888ad512b325176b
 </html>

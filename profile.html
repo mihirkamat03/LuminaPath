@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,4 +75,82 @@
     <script src="js/auth_state.js"></script>
 
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - LuminaPath</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style_profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="maps.html">Maps</a>
+            <a href="profile.html" id="profile-link" class="active-link">Profile</a>
+            <a href="#" id="auth-btn" class="nav-btn">Logout</a>
+        </nav>
+    </header>
+
+    <div class="profile-container">
+        
+        <div class="profile-card">
+            <div class="avatar-glow">
+                <img src="assets/icons/luminapath_logo-removebg-preview.png" alt="User Avatar" class="avatar">
+            </div>
+            <h1 id="user-name">Loading...</h1>
+            <p id="user-email" class="email-text">fetching data...</p>
+            <div class="badge-container">
+                <span class="badge">🛡️ Safety Scout</span>
+                <span class="badge">🌙 Night Owl</span>
+            </div>
+            <button class="edit-btn">Edit Profile</button>
+        </div>
+
+        <div class="stats-grid">
+            <h2 id="welcome-msg">Welcome Back!</h2>
+            
+            <div class="grid-box">
+                <div class="stat-box">
+                    <i class="fas fa-route"></i>
+                    <h3>12</h3>
+                    <p>Safe Routes Taken</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>98%</h3>
+                    <p>Avg Safety Score</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-clock"></i>
+                    <h3>4.5 hrs</h3>
+                    <p>Night Travel Time</p>
+                </div>
+            </div>
+
+            <div class="recent-activity">
+                <h3>Recent Activity</h3>
+                <ul>
+                    <li><span>📍 Bandra Station → TSEC</span> <span class="status safe">Safe</span></li>
+                    <li><span>📍 Home → Gym</span> <span class="status moderate">Moderate</span></li>
+                    <li><span>📍 Library → Bus Stop</span> <span class="status safe">Safe</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="js/auth_state.js"></script>
+
+</body>
+>>>>>>> a2027aae10bd744b1f1e9650888ad512b325176b
 </html>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -103,4 +104,109 @@
     </script>
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Lumina Path</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/icons/luminapath_logo-removebg-preview.png" type="image/x-icon">
+    <script src="js/auth_state.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="maps.html">Maps</a>
+            <!-- <a href="profile.html" id="profile-link" style="display: none; color: #4CAF50;">Profile</a> -->
+            <a href="register.html" id="auth-btn" class="nav-btn">Register</a>
+        </nav>
+    </header>
+
+    <section class="about-section-1">
+        <div class="content-wrapper">
+            <h1 class="main-title">About Us</h1>
+
+            <div class="info-block">
+                <h2>Why us?</h2>
+                <p>Current navigation technology is built for speed, not security, often leading vulnerable
+                    pedestrians into poorly lit or deserted areas just to save a few seconds. There is a critical safety
+                    gap in urban mobility where women, children, and late-shift workers feel forced to choose
+                    between reaching their destination quickly or reaching it safely.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section-2">
+        <div class="content-wrapper">
+            <div class="info-block">
+                <h2>What do we do?</h2>
+                <p>LuminaPath bridges this gap by integrating real-time environmental data—such as streetlamp
+                    density and active foot traffic—directly into the routing engine. Instead of just showing the
+                    "fastest" route, our AI analyzes urban infrastructure to suggest the brightest and most
+                    populated paths, ensuring users are never left in the dark.</p>
+            </div>
+
+            <div class="info-block">
+                <h2>Our Impact:</h2>
+                <p>By prioritizing human security over algorithmic efficiency, we are reclaiming the night for
+                    everyone. This product will fundamentally shift how cities are navigated, turning "fear of the
+                    dark" into "confidence in the path" and setting a new global standard where safety is a default
+                    setting in every journey.</p>
+            </div>
+
+            <div class="register-btn-small" onclick="window.location.href='register.html'">
+                Register <span>&nearr;</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="founders-section">
+        <div class="content-wrapper">
+            <h1 class="founders-title">Founders</h1>
+
+            <div class="founders-list">
+                <div class="founder-item">
+                    <h3>Aarush Nalwade:</h3>
+                    <p>B.Tech CSE, 1st Year student from TSEC</p>
+                </div>
+                <div class="founder-item">
+                    <h3>Advait Jawalikar:</h3>
+                    <p>B.Tech CSE & Cyber Security, 1st Year student from NMIMS MPSTME</p>
+                </div>
+                <div class="founder-item">
+                    <h3>Mihir Kamat:</h3>
+                    <p>B.Tech CSE, 1st Year student from TSEC</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        const aboutSections = document.querySelectorAll('.about-section-1, .about-section-2, .founders-section');
+
+        aboutSections.forEach((section) => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+
+>>>>>>> a2027aae10bd744b1f1e9650888ad512b325176b
 </html>
