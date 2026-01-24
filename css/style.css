@@ -12,11 +12,14 @@
 .navbar {
     position: fixed;
     top: 0;
-    left: 5.5%;
     width: 100%;
     padding: 20px 0;
     z-index: 1000;
     background: rgba(0, 0, 0, 0.2);
+}
+
+.navbar a:nth-child(1), .navbar a:nth-child(2), .navbar a:nth-child(3) {
+    left: 7%;
 }
 
 .navbar nav {
@@ -53,7 +56,7 @@
 
 .nav-btn {
     position: absolute;
-    right: -24%;
+    right: -27%;
     transition: 0.3s;
 }
 
