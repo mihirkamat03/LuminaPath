@@ -30,7 +30,7 @@
     <main class="hero-section">
         <div class="hero-content">
             <h1 class="logo-text">Lumina<br>Path</h1>
-            <p class="tagline">Shortest path isn't always the right one.</p>
+            <p class="tagline" id="typewriter-text" data-text="Shortest path isn't always the right one."></p>
         </div>
     </main>
 
@@ -114,6 +114,30 @@
         sections.forEach((section) => {
             observer.observe(section);
         });
+
+        // TYPEWRITER EFFECT FUNCTION
+        function typeWriterEffect() {
+            const element = document.getElementById('typewriter-text');
+            const text = element.getAttribute('data-text'); // Get text from HTML
+            let i = 0;
+
+            // Clear content just in case
+            element.innerHTML = "";
+
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, 50); // Speed: 50ms per letter
+                }
+            }
+
+            // Start typing after a short delay (e.g., 0.5s after page load)
+            setTimeout(type, 500);
+        }
+
+        // Run the function when page loads
+        window.addEventListener('load', typeWriterEffect);
     </script>
 
 

@@ -24,7 +24,7 @@ function initMap() {
   directionsService = new google.maps.DirectionsService();
 }
 
-/* FAKE SAFETY LOGIC */
+/*  SAFETY LOGIC */
 function getSafetyScore(index) {
   const hour = new Date().getHours();
   let score = 0;
@@ -46,9 +46,9 @@ function getSafetyScore(index) {
   const text = document.getElementById('safetyPercent');
 
   if (box && bar && text) {
-    box.classList.remove('hidden'); 
-    text.innerText = percent + "%";
-    bar.style.width = percent + "%";
+      box.classList.remove('hidden');
+      text.innerText = percent + "%";
+      bar.style.width = percent + "%";
   }
 
   if (score >= 3) return "SAFE";
@@ -56,15 +56,21 @@ function getSafetyScore(index) {
   return "RISKY";
 }
 
+/* CLEAR OLD ROUTES */
 function clearRoutes() {
   renderers.forEach(r => r.setMap(null));
   renderers = [];
+  
+  // --- ADDED: CLEAR OLD CIRCLES ---
+  const container = document.getElementById('circleContainer');
+  if (container) container.innerHTML = '';
+  document.getElementById('routeFeedbackSection').classList.add('hidden');
 }
 
 /* CALCULATE ROUTE */
 function calculateRoute() {
   if (!directionsService) {
-    alert("Map still loading");
+    alert("Map still loading, thoda wait kar 🤦‍♂️");
     return;
   }
 
@@ -72,7 +78,7 @@ function calculateRoute() {
   const end = document.getElementById("end").value;
 
   if (!start || !end) {
-    alert("Please enter both locations");
+    alert("Dono locations daal bhai");
     return;
   }
 
@@ -89,7 +95,7 @@ function calculateRoute() {
       if (status === "OK") {
         drawRoutes(result);
       } else {
-        alert("Entered Route not found!! Please try again with a different location.");
+        alert("Entered Route not found!! Please try again.");
       }
     }
   );
@@ -97,12 +103,17 @@ function calculateRoute() {
 
 /* DRAW ROUTES */
 function drawRoutes(result) {
+  // --- ADDED: SHOW FEEDBACK SECTION ---
+  const section = document.getElementById('routeFeedbackSection');
+  const container = document.getElementById('circleContainer');
+  if (section) section.classList.remove('hidden');
+
   result.routes.forEach((route, index) => {
     const safety = getSafetyScore(index);
 
     const color =
       safety === "SAFE" ? "green" :
-        safety === "MODERATE" ? "orange" : "red";
+      safety === "MODERATE" ? "orange" : "red";
 
     const renderer = new google.maps.DirectionsRenderer({
       map,
@@ -115,11 +126,40 @@ function drawRoutes(result) {
     });
 
     renderers.push(renderer);
+
+    // --- ADDED: CREATE CLICKABLE CIRCLE FOR EACH ROUTE ---
+    const circle = document.createElement('div');
+    circle.className = `route-circle circle-${color}`;
+    circle.innerText = index + 1; // Shows 1, 2, or 3 inside the circle
+    circle.onclick = () => openFeedback();
+    if (container) container.appendChild(circle);
   });
+}
+
+// --- ADDED: MODAL CONTROL FUNCTIONS ---
+function openFeedback() {
+    const modal = document.getElementById('feedbackModal');
+    if (modal) modal.classList.remove('hidden');
+}
+
+function closeFeedback() {
+    const modal = document.getElementById('feedbackModal');
+    if (modal) modal.classList.add('hidden');
+}
+
+function submitFeedback() {
+    const text = document.getElementById('feedbackText').value;
+    if (text.trim() !== "") {
+        alert("POW! Feedback Received!");
+        document.getElementById('feedbackText').value = "";
+        closeFeedback();
+    }
 }
 
 /* MAKE FUNCTIONS GLOBAL */
 window.calculateRoute = calculateRoute;
+window.closeFeedback = closeFeedback;
+window.submitFeedback = submitFeedback;
 
 /* START */
 loadGoogleMaps();

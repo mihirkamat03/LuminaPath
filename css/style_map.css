@@ -5,6 +5,10 @@
   font-family: Arial, sans-serif;
 }
 
+body{
+  background: linear-gradient(to right, #4285f4,#34a853, #fbbc05, #ea4335)
+}
+
 /* MAP FULLSCREEN */
 #map {
   position: fixed;
@@ -19,7 +23,7 @@
 .navbar {
   position: relative;
   z-index: 10;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
   padding: 15px 30px;
 }
 
@@ -75,6 +79,8 @@
   background: #45a049;
 }
 
+
+
 /* LEGEND */
 #legend {
   position: absolute;
@@ -95,12 +101,12 @@
 
 .safety-glass-container {
     position: fixed;
-    bottom: 20%;
-    left: 10%;
+    bottom: 12.5%;
+    left: 11.5%;
     transform: translateX(-50%);
     z-index: 9999;
-    width: 260px;
-    padding: 15px 20px;
+    width: 265px;
+    padding: 8px 20px;
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(15px);
     border-radius: 40px; /* Rounded pill shape */
@@ -122,3 +128,45 @@
   height: 120px;
   width: 120px;
 }
+
+.feedback-container {
+    margin-top: 6px;
+    text-align: center;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+.circle-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.route-circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid rgba(255,255,255,0.5);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.route-circle:hover {
+    transform: scale(1.2);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* Glassy background for the circles */
+.circle-green { background: #27ae60; }
+.circle-orange { background: #f39c12; }
+.circle-red { background: #e74c3c; }
+
+.hidden { display: none !important; }

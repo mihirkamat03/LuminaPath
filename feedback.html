@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Location - LuminaPath</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style_feedback.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="maps.html">Maps</a>
+            <a href="feedback.html" class="active-link">Report</a>
+            <a href="register.html" id="auth-btn" class="nav-btn">Register</a>
+        </nav>
+    </header>
+
+    <div class="feedback-container">
+        <div class="glass-form">
+            <h2>📢 Report a Location</h2>
+            <p>Help others by rating the safety of streets you've visited.</p>
+
+            <form id="feedbackForm">
+                <div class="form-group">
+                    <label>Location Name / Street</label>
+                    <input type="text" id="locationName" placeholder="e.g. Carter Road, Bandra" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Safety Rating</label>
+                    <div class="rating-options">
+                        <label class="radio-label safe">
+                            <input type="radio" name="rating" value="Safe" required> <span>🟢 Safe</span>
+                        </label>
+                        <label class="radio-label moderate">
+                            <input type="radio" name="rating" value="Moderate"> <span>🟠 Moderate</span>
+                        </label>
+                        <label class="radio-label risky">
+                            <input type="radio" name="rating" value="Risky"> <span>🔴 Risky</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Why?</label>
+                    <textarea id="comment" rows="3" placeholder="e.g. No streetlights, heavy construction..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Report</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="js/auth_state.js"></script>
+
+    <script>
+        // SIMPLE FEEDBACK SUBMISSION SCRIPT
+        const form = document.getElementById('feedbackForm');
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Check if user is logged in (optional)
+            const user = firebase.auth().currentUser;
+            if (!user) {
+                alert("Please Login to submit a report!");
+                window.location.href = "register.html";
+                return;
+            }
+
+            const location = document.getElementById('locationName').value;
+            const rating = document.querySelector('input[name="rating"]:checked').value;
+            const comment = document.getElementById('comment').value;
+
+            // Push to Firebase
+            firebase.database().ref('feedback').push({
+                location: location,
+                rating: rating,
+                comment: comment,
+                user: user.email,
+                timestamp: Date.now()
+            }).then(() => {
+                alert("Thank you! Your report helps keep the community safe.");
+                form.reset();
+            }).catch(err => alert("Error: " + err.message));
+        });
+    </script>
+
+</body>
+</html>

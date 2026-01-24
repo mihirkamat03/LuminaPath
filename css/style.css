@@ -60,6 +60,21 @@
     transition: 0.3s;
 }
 
+/* TYPEWRITER CURSOR EFFECT */
+.tagline::after {
+    content: '|';
+    animation: blink 1s infinite;
+    color: #4caf4f00; /* Green cursor matching your theme */
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+/* Keyframes for blinking */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
 .hero-section {
     height: 100vh;
     width: 100%;
