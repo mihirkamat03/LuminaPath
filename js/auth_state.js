@@ -8,53 +8,47 @@ const firebaseConfig = {
     appId: "1:147151629612:web:5f70cc0804913628c65089"
 };
 
-// Initialize only if not already initialized
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
 const auth = firebase.auth();
 const db = firebase.database();
 
-// 2. Listen for User Login/Logout State
 auth.onAuthStateChanged((user) => {
     const authBtn = document.getElementById('auth-btn');
     const profileLink = document.getElementById('profile-link');
     
     if (user) {
-        // --- USER IS LOGGED IN ---
         if (authBtn) {
             authBtn.innerText = "Logout";
             authBtn.href = "#";
-            authBtn.onclick = logoutUser; // Attach logout function
+            authBtn.onclick = logoutUser;
         }
         if (profileLink) {
-            profileLink.style.display = "inline-block"; // Show Profile link
+            profileLink.style.display = "inline-block"; 
         }
         
-        // If we are on the Profile Page, load user data
         if (window.location.pathname.includes("profile.html")) {
             loadProfileData(user);
         }
 
     } else {
-        // --- USER IS LOGGED OUT ---
         if (authBtn) {
             authBtn.innerText = "Register";
             authBtn.href = "register.html";
             authBtn.onclick = null;
         }
         if (profileLink) {
-            profileLink.style.display = "none"; // Hide Profile link
+            profileLink.style.display = "none"; 
         }
 
-        // Redirect to login if trying to access profile while logged out
         if (window.location.pathname.includes("profile.html")) {
             window.location.href = "register.html";
         }
     }
 });
 
-// 3. Logout Function
+// Logout Function
 function logoutUser() {
     auth.signOut().then(() => {
         alert("Logged out successfully");
@@ -64,16 +58,13 @@ function logoutUser() {
     });
 }
 
-// 4. Load Profile Data (For Profile Page)
 function loadProfileData(user) {
     const nameEl = document.getElementById('user-name');
     const emailEl = document.getElementById('user-email');
     const welcomeEl = document.getElementById('welcome-msg');
     
-    // Set basic info from Auth
     if (emailEl) emailEl.innerText = user.email;
 
-    // Fetch custom data (Username) from Realtime Database
     db.ref('users/' + user.uid).once('value').then((snapshot) => {
         const data = snapshot.val();
         if (data && data.username) {
