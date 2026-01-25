@@ -205,14 +205,6 @@ window.useMyLocation = useMyLocation;
   );
 }
 
-/* @keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  50% { transform: translateX(5px); }
-  100% { transform: translateX(0); }
-}
-*/
-
 /* DRAW ROUTES */
 function drawRoutes(result) {
   // --- ADDED: SHOW FEEDBACK SECTION ---
@@ -281,14 +273,3 @@ window.submitFeedback = submitFeedback;
 
 /* START */
 loadGoogleMaps();
-
-document.addEventListener('DOMContentLoaded', () => {
-    const inputs = [document.getElementById('start'), document.getElementById('end')];
-    inputs.forEach(input => {
-        input.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                calculateRoute();
-            }
-        });
-    });
-});
