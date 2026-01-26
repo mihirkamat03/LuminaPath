@@ -36,8 +36,8 @@ let renderers = [];
 /* LOAD GOOGLE MAPS */
 function loadGoogleMaps() {
   const script = document.createElement("script");
-  script.src =
-    "https://maps.googleapis.com/maps/api/js?key=AIzaSyDQb4IPsDjIboyoWiQ50og4atYwlN1vkdo";
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${CONFIG.GOOGLE_MAPS_KEY}&callback=initMap&libraries=places,geometry,directions`;
+  script.id='google-maps-script';
   script.async = true;
   script.defer = true;
 

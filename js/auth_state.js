@@ -1,13 +1,7 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyDVPC-bqN691qzIfT8B_mWxs4WJskgX7-U",
-    authDomain: "luminapath-d25d4.firebaseapp.com",
-    projectId: "luminapath-d25d4",
-    storageBucket: "luminapath-d25d4.firebasestorage.app",
-    messagingSenderId: "147151629612",
-    appId: "1:147151629612:web:5f70cc0804913628c65089"
+    apiKey: "CONFIG.FIREBASE_CONFIG",
 };
 
-// Initialize only if not already initialized
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
