@@ -1,5 +1,7 @@
 const firebaseConfig = {
-    apiKey: "CONFIG.FIREBASE_CONFIG",
+    apiKey: CONFIG.FIREBASE_API_KEY,
+    authDomain: "luminapath-d25d4.firebaseapp.com",
+    projectId: "luminapath-d25d4"
 };
 
 if (!firebase.apps.length) {

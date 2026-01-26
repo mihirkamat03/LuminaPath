@@ -27,7 +27,7 @@ function showSignup() {
 
 
 const firebaseConfig = {
-    apiKey: "CONFIG.FIREBASE_CONFIG",
+    apiKey: CONFIG.FIREBASE_API_KEY,
     authDomain: "luminapath-d25d4.firebaseapp.com",
     projectId: "luminapath-d25d4",
     storageBucket: "luminapath-d25d4.firebasestorage.app",
